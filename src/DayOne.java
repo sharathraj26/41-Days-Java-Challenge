@@ -1,4 +1,6 @@
 import java.util.*;
+import java.util.stream.Collectors;
+
 public class DayOne {
     public static void main(String[] args){
         String a = "2a3b3c";
@@ -15,5 +17,32 @@ public class DayOne {
             }
         }
         System.out.println("The Expected Output : "+result.toString());
+
+
+    //Learning Concepts of filter(), map(), collect().
+
+    // stream.filter(element -> condition)
+    List<Integer> list =  Arrays.asList(1,2,3,4,3,4,5);
+    List<Integer> resultList = list.stream().filter(n -> n %2 == 0)
+            .collect(Collectors.toList());
+    System.out.println(resultList);
+
+   // stream.map(element -> transformation)
+   List<String> strList = Arrays.asList("bhanu","sharath","ram","lakshman","ram");
+   List<String> streamList = strList.stream()
+                   .distinct()
+                   .map(name -> name.toUpperCase())
+                   .collect(Collectors.toList());
+        System.out.println(streamList);
+
+   //stream.collect(Collectors.toList()) // or toSet(), joining(), groupingBy() etc.
+        String name1 = strList.stream()
+                .distinct()
+                .collect(Collectors.joining(" "));
+        System.out.println(name1);
+
+        String name = String.join(" ", strList);// with lambda if there is null value in list it throws Null pointer exception.
+        System.out.println(name);
+
     }
 }
