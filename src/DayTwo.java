@@ -90,5 +90,21 @@ public class DayTwo {
         System.out.println(output7);
         System.out.println(output8);
 
+        //Combination of flatmap(),map(),filter(),collect(),reduce()
+        //A List<String> of unique, non-null, non-empty names in uppercase.
+        //The longest name as a String.
+        List<List<String>> nestedNames = Arrays.asList(
+                Arrays.asList("Alice", "", "Bob"),
+                Arrays.asList(null, "Charlie", "Alice"),
+                Arrays.asList("David", "", "Eve")
+        );
+        String name = nestedNames.stream()
+                .flatMap(n->n.stream())
+                .filter(n -> n != null && !n.isEmpty())
+                .toList()
+                .stream().reduce("",(a,b) -> a.length()>b.length() ? a:b);
+        System.out.println(name);
+
+
     }
 }
