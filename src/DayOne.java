@@ -44,5 +44,69 @@ public class DayOne {
         String name = String.join(" ", strList);// with lambda if there is null value in list it throws Null pointer exception.
         System.out.println(name);
 
+//        Input: ["java", null, "python", null]
+//        Output: ["java", "python"]
+        List<String> s = Arrays.asList("java", null, "python", null);
+        List<String> r = s.stream()
+                .filter(Objects::nonNull)
+                .toList();
+        System.out.println(r);
+
+        // Input: ["Alice", "Bob", "Ankit", "Mike"]
+       //  Output: ["Alice", "Ankit"]
+        List<String> input1 = Arrays.asList("Alice", "Bob", "Ankit", "Mike");
+        List<String> output1 = input1.stream()
+                .filter(n -> n.startsWith("A"))
+                .toList();
+        System.out.println(output1);
+
+        // Input: ["java", "stream", "filter", "map"]
+        // Output: 2 (stream, filter)
+        List<String> input2 = Arrays.asList("java", "stream", "filter", "map");
+        List<String> output2 = input2.stream()
+                .filter(n -> n.length()>4)
+                .toList();
+        System.out.println(output2);
+
+         // Input: ["John Doe", "Alice Smith", "Bob Marley"]
+        // Output: ["John", "Alice", "Bob"]
+        List<String> input3 = Arrays.asList("John Doe", "Alice Smith", "Bob Marley");
+        List<String> output3 =  input3.stream()
+                .map(i ->  i.split(" ")[0])
+                .toList();
+        System.out.println(output3);
+
+
+          // new User("Alice", 25),
+          // new User("Bob", 16),
+          // new User("John", 30)
+          // output should be age greater than 18
+        class User {
+            String name;
+            int age;
+
+            public User(String name, int age) {
+                this.name = name;
+                this.age = age;
+            }
+
+            public String getName() {
+                return name;
+            }
+
+            public int getAge() {
+                return age;
+            }
+        }
+      List<User> users = Arrays.asList(
+              new User("Alice", 25),
+              new User("Bob", 16),
+              new User("John", 30));
+
+        List<String> users1 = users.stream()
+                .filter(user -> user.getAge()> 18)
+                .map(User::getName)
+                .toList();
+        System.out.println(users1);
     }
 }
