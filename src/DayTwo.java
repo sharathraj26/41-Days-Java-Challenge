@@ -105,6 +105,29 @@ public class DayTwo {
                 .stream().reduce("",(a,b) -> a.length()>b.length() ? a:b);
         System.out.println(name);
 
+        //A list of valid integers: [1, 2, 3, 4, 5, 6, 7, 8, 9]
+        //The sum of these integers: 45
+        List<List<String>> data = Arrays.asList(
+                Arrays.asList("1,2,3", "a,b", ""),
+                Arrays.asList("4", "5,6", "x"),
+                Arrays.asList("7,8,9")
+        );
 
+        int output10 = data.stream()
+                .flatMap(n->n.stream())
+                .filter(n->n!=null && !n.isEmpty())
+                .flatMap(n -> Arrays.stream(n.split(",")))
+                .filter(DayTwo::isnumeric) //this isnumeric method is down
+                .map(Integer::parseInt)
+                .toList()
+                .stream().reduce(0,(a,b)->a+b);
+        System.out.println(output10);
+
+
+
+
+    }
+    public static boolean isnumeric(String string){
+        return string.matches("-?\\d+");
     }
 }
