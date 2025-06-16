@@ -1,7 +1,14 @@
+import javax.swing.plaf.synth.SynthTextAreaUI;
 import java.awt.*;
+
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.SubmissionPublisher;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class DayFive {
     public static void main(String[] arg){
@@ -63,6 +70,47 @@ public class DayFive {
         }
         System.out.println(map3);
         System.out.println(c2);
+
+
+        //1. Group Words by Length
+        //Input: ["hi", "hello", "apple", "to", "tea", "sun"]
+        //Output: {2=[hi, to], 3=[tea, sun], 5=[hello, apple]}
+        List<String> input4 = Arrays.asList("hi", "hello", "apple", "to", "tea", "sun");
+        Map<Integer,List<String>> output4 = input4.stream()
+                .collect(Collectors.groupingBy(String::length));
+        System.out.println(output4);
+
+        //Input: ["apple", "apricot", "banana", "blueberry", "cherry"]
+        //Output: {a=[apple, apricot], b=[banana, blueberry], c=[cherry]}
+        List<String> input5 = Arrays.asList("apple", "apricot", "banana", "blueberry", "cherry");
+        Map<Character,List<String>> output5 = input5.stream()
+                .collect(Collectors.groupingBy(s->s.charAt(0)));
+        System.out.println(output5);
+
+        //5. Group Numbers by Even or Odd
+        //Input: [1, 2, 3, 4, 5, 6]
+        //Output: {true=[2, 4, 6], false=[1, 3, 5]}
+        List<Integer> Input6 = Arrays.asList(1,2,3,4,5,6);
+        Map<Boolean,List<Integer>> output6 = Input6.stream()
+                .collect(Collectors.groupingBy(a-> a%2 ==0));
+        System.out.println(output6);
+
+        //7. Group by Word Frequency
+        //Input: ["apple", "banana", "apple", "orange", "banana", "apple"]
+        //Output: {apple=3, banana=2, orange=1}
+        //Use groupingBy + counting().
+        List<String> Input7 = Arrays.asList("apple", "banana", "apple", "orange", "banana", "apple");
+        Map<String,Long> output7 = Input7.stream()
+                .collect(Collectors.groupingBy(s ->s,Collectors.counting()));
+        System.out.println(output7);
+
+         //8. Group Integers by Number of Digits
+         //Input: [1, 23, 456, 78, 4, 1023]
+        // Output: {1=[1,4], 2=[23,78], 3=[456], 4=[1023]}
+        List<Integer> Input8 = Arrays.asList(1, 23, 456, 78, 4, 1023);
+        Map<Integer, List<Integer>> output8 = Input8.stream()
+                .collect(Collectors.groupingBy(s-> String.valueOf(s).length()));
+         System.out.println(output8);
 
     }
 }
