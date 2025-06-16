@@ -112,5 +112,24 @@ public class DayFive {
                 .collect(Collectors.groupingBy(s-> String.valueOf(s).length()));
          System.out.println(output8);
 
+                //Contain Duplicates in the given array
+                HashMap<Integer,Integer> seen = new HashMap<>();
+                int[] nums = {1, 2, 3, 4, 3};
+                int c = 0;
+                boolean x = false;
+                for(int i =0;i<nums.length;i++){
+                    if(seen.containsKey(nums[i])){
+                        x= true;
+                    }
+                    seen.put(nums[i],i);
+                }
+               System.out.println(seen);
+               System.out.println(x);
+
+
+
+
+
+
     }
 }
