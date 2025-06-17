@@ -127,6 +127,33 @@ public class DayFive {
                System.out.println(seen);
                System.out.println(x);
 
+               //Prefix sum logic
+               int[] result = new int[nums.length];
+
+               int sum = 0;
+
+               for(int i =0;i<nums.length;i++){
+                   sum += nums[i];
+                   result[i] = sum;
+                }
+
+               //No Duplicates in given sub String
+                int maxlen = 0;
+                HashSet<Character> hs = new HashSet<>();
+                int i=0;
+                String s = "abcabcbb";
+                for(int j=0;j<s.length();j++){
+
+                    while(hs.contains(s.charAt(j))){
+                        hs.remove(s.charAt(i));
+                        i++;
+                    }
+                    hs.add(s.charAt(j));
+                    maxlen = Math.max(maxlen,j-i+1);
+                }
+                System.out.println("Max-length of Sub-String : "+ maxlen);
+
+
 
 
 
