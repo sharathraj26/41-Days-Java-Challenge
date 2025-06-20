@@ -122,42 +122,42 @@ public class MostAskedStreamAPICodes {
          System.out.println(ls);
 
 
-//                Thread t1 = new Thread(() -> {
-//                    for(char a ='A';a<='Z';a++) {
-//                        synchronized (lock){
-//                            while(!changeTurn) {
-//                                try {
-//                                    lock.wait();
-//                                }catch(InterruptedException e) {
-//                                    System.out.print(e);
-//                                }
-//                            }
-//                            System.out.print(a+" ");
-//                            changeTurn = false;
-//                            lock.notifyAll();
-//                        }
-//                    }
-//                });
-//
-//                Thread t2 = new Thread(() -> {
-//                    for(int i =1;i<=26;i++) {
-//                        synchronized(lock) {
-//                            while(changeTurn) {
-//                                try {
-//                                    lock.wait();
-//                                } catch(InterruptedException e) {
-//                                    System.out.print(e);
-//                                }
-//                            }
-//                            System.out.print(i + " ");
-//                            changeTurn = true;
-//                            lock.notifyAll();
-//                        }
-//                    }
-//                });
-//
-//                t1.start();
-//                t2.start();
+                Thread t1 = new Thread(() -> {
+                    for(char a ='A';a<='Z';a++) {
+                        synchronized (lock){
+                            while(!changeTurn) {
+                                try {
+                                    lock.wait();
+                                }catch(InterruptedException e) {
+                                    System.out.print(e);
+                                }
+                            }
+                            System.out.print(a+" ");
+                            changeTurn = false;
+                            lock.notifyAll();
+                        }
+                    }
+                });
+
+                Thread t2 = new Thread(() -> {
+                    for(int i =1;i<=26;i++) {
+                        synchronized(lock) {
+                            while(changeTurn) {
+                                try {
+                                    lock.wait();
+                                } catch(InterruptedException e) {
+                                    System.out.print(e);
+                                }
+                            }
+                            System.out.print(i + " ");
+                            changeTurn = true;
+                            lock.notifyAll();
+                        }
+                    }
+                });
+
+                t1.start();
+                t2.start();
 
                 //String = hello
                 //olleh using java 8
