@@ -1,16 +1,12 @@
-package Concepts;
-
-import com.sun.source.doctree.EscapeTree;
-
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
-class Employee {
+class Employee1 {
     String name;
     String dept;
     int salary;
 
-    public Employee(String name, String dept, int salary) {
+    public Employee1(String name, String dept, int salary) {
         this.name = name;
         this.dept = dept;
         this.salary = salary;
@@ -52,8 +48,9 @@ public class StreamAPI_Problems {
         //Input:
         //List<Integer> list = Arrays.asList(1, 2, 3, 2, 4, 1, 2, 4, 4, 4, 5, 1);
         //Expected Output: [4, 2, 1]  // 4 occurs 4 times, 2 - 3 times, 1 - 3 times
-        List<Integer> list = Arrays.asList(1, 2, 3, 2, 4, 1, 2, 4, 4, 4, 5, 1);
-         List<Integer> output= list.stream()
+        int[] arr = {1, 2, 3, 2, 4, 1, 2, 4, 4, 4, 5, 1};
+         List<Integer> output= Arrays.stream(arr)
+                 .boxed()
                 .collect(Collectors.groupingBy(Function.identity(),Collectors.counting()))
                   .entrySet()
                   .stream()
@@ -63,19 +60,19 @@ public class StreamAPI_Problems {
                  .toList();
         System.out.println(output);
 
-        List<Employee> emps = Arrays.asList(
-                new Employee("Alice", "HR", 3000),
-                new Employee("Bob", "IT", 5000),
-                new Employee("Charlie", "IT", 4500),
-                new Employee("David", "HR", 3200)
+        List<Employee1> emps = Arrays.asList(
+                new Employee1("Alice", "HR", 3000),
+                new Employee1("Bob", "IT", 5000),
+                new Employee1("Charlie", "IT", 4500),
+                new Employee1("David", "HR", 3200)
         );
         Map<String, List<String>> em= emps.stream()
                         .collect(Collectors.groupingBy(
-                                Employee::getDept
+                                Employee1::getDept
                                ,Collectors.collectingAndThen(
                                         Collectors.toList(),
                                         list1 -> list1.stream()
-                                                .map(Employee::getName)
+                                                .map(Employee1::getName)
                                                 .toList()
                                 )        ));
                             System.out.println(em);
